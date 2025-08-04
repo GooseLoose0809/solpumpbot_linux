@@ -5,18 +5,16 @@ import threading
 
 app = Flask(__name__)
 
-BTN_IMAGE = "approve.png"
+# 💥 Confirmed approve button position
+APPROVE_X = 1185
+APPROVE_Y = 614
 
 def click_approve():
-    print("[*] Searching for approve button...")
-    for i in range(20):
-        location = pyautogui.locateOnScreen(BTN_IMAGE, confidence=0.8)
-        if location:
-            print("[+] Approve button found.")
-            pyautogui.click(pyautogui.center(location))
-            return
-        time.sleep(0.5)
-    print("[-] Approve button not found.")
+    print("[*] Clicking approve button at coords (1185, 614)...")
+    time.sleep(1)  # 1-second delay before clicking
+    pyautogui.moveTo(APPROVE_X, APPROVE_Y)
+    pyautogui.click()
+    print("[+] Clicked approve.")
 
 @app.route("/", methods=["GET"])
 def trigger_click():
@@ -24,5 +22,5 @@ def trigger_click():
     return "Triggered", 200
 
 if __name__ == "__main__":
-    print("[*] Listening on http://0.0.0.0:6969 (forever)")
+    print("[*] Listening on http://localhost:6969/")
     app.run(host="0.0.0.0", port=6969)
