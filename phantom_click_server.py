@@ -5,16 +5,17 @@ import threading
 
 app = Flask(__name__)
 
-# 💥 Confirmed approve button position
 APPROVE_X = 1185
 APPROVE_Y = 614
 
 def click_approve():
     print("[*] Clicking approve button at coords (1185, 614)...")
-    time.sleep(1)  # 1-second delay before clicking
+    time.sleep(1)  # wait before clicking
     pyautogui.moveTo(APPROVE_X, APPROVE_Y)
-    pyautogui.click()
-    print("[+] Clicked approve.")
+    for i in range(30):  # 👊 Click 30 times
+        pyautogui.click()
+        time.sleep(0.05)  # small delay between clicks
+    print(f"[+] Clicked approve {i+1} times.")
 
 @app.route("/", methods=["GET"])
 def trigger_click():
