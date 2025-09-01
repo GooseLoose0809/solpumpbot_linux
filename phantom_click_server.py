@@ -12,7 +12,7 @@ def click_approve():
     print("[*] Clicking approve button at coords (1185, 614)...")
     time.sleep(1)  # wait before clicking
     pyautogui.moveTo(APPROVE_X, APPROVE_Y)
-    for i in range(30):  # 👊 Click 30 times
+    for i in range(120):  # 👊 Click 30 times
         pyautogui.click()
         time.sleep(0.05)  # small delay between clicks
     print(f"[+] Clicked approve {i+1} times.")
